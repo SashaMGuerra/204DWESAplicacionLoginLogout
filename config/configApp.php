@@ -11,3 +11,11 @@
 define("OBLIGATORIO", 1);
 define("OPCIONAL", 0);
 
+$aControladores = [
+    'login' => 'controller/cLogin.php'
+];
+
+$aVistas = [
+    'layout' => 'view/Layout.php',
+    'login' => 'view/vLogin.php'
+];

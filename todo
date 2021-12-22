@@ -1,0 +1,5 @@
+Doc con el uso de $_SESSION
+$_SESSION para página anterior
+
+Los arrays de controladores y vistas están en configApp,
+también tiene los require de las clases y la librería de validación.

@@ -1,3 +1,7 @@
+<?php
+require_once $aVistas[$vistaEnCurso];
+
+?>
 <!DOCTYPE html>
 <!--
     Autor: Isabel Martínez Guerra.
@@ -12,6 +16,7 @@
     <body>
         <header>
             <h1>Aplicación Login-Logout</h1>
+            <h2><?php echo $aLayout['header h2'] ?></h2>
         </header>
         <main>
         </main>

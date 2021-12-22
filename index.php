@@ -1,3 +1,5 @@
 <?php
-    require_once './view/layout.php';
+require_once './config/configApp.php';
+
+require_once $aControladores["login"];
 ?>

@@ -1,7 +1,7 @@
 /**
- * Author:  Isabel Martínez Guerra
+ * Author:  Sasha
  * Fecha de creación: 25/11/2021
-
+ *
  * Script creación de base de datos, tablas y usuario de conexión.
  */
 

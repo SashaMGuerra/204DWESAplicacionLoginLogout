@@ -38,7 +38,7 @@ footer {
 /* Estilo del header */   
 header{
     text-align: center;
-    margin: 5px 0;
+    margin: 5px 0 10px;
 }
 
 /* Estilos de footer */
@@ -60,4 +60,10 @@ footer div.info{
 }
 footer img{
     width: 30px;
+}
+
+/* Estilos comunes a los formularios */
+fieldset.submit{
+    border: none;
+    text-align: center;
 }

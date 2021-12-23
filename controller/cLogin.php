@@ -23,28 +23,21 @@ if(isset($_REQUEST['login'])){
          * Si el usuario existe y la contraseña es correcta, crea una nueva
          * sesión y lleva al usuario a la página de inicio.
          */
-        if(UsuarioPDO::validarUsuario($_REQUEST['usuario'], $_REQUEST['password'])){
+        $oUsuarioValido = UsuarioPDO::validarUsuario($_REQUEST['usuario'], $_REQUEST['password']);
+        if($oUsuarioValido){
+            /* Inicio de la sesión para almacenar el usuario */
+            session_start();
+            $_SESSION['usuarioDAW204AppLoginLogout'] = $_REQUEST['usuario'];
+            $_SESSION['FechaHoraUltimaConexionAnterior'] = $oUsuarioValido->T01_FechaHoraUltimaConexion;
+            
             require_once $aControladores['inicio'];
         }
-        // Si el usuario no existe o la contraseña es incorrecta, devuelve a la página de login.
-        else{
-            $sVistaEnCurso = 'login';
-            require_once $aVistas['layout'];
-        }
-    }
-    /*
-     * Si el usuario o contraseña se han introducido con un formato incorrecto,
-     * devuelve a la página de login.
-     */
-    else{
-        $sVistaEnCurso = 'login';
-        require_once $aVistas['layout'];
     }
 }
+
 /*
- * Si no se ha intentado hacer login, se manda a la página para ello.
+ * Si no se ha enviado el formulario, o si se ha enviado pero estaba incorrecto,
+ * se muestra la vista del login.
  */
-else{
-    $sVistaEnCurso = 'login';
-    require_once $aVistas['layout'];
-}
+$sVistaEnCurso = 'login';
+require_once $aVistas['layout'];

@@ -13,8 +13,8 @@ class UsuarioPDO implements UsuarioDB{
      * 
      * @param String $codigoUsuario Código del usuario a comprpobar.
      * @param String $password Contraseña del usuario a comprobar.
-     * @return boolean Devuelve true si el usuario existe y la contraseña es correcta,
-     * y false en caso contrario.
+     * @return Object|boolean Devuelve el objeto únicamente con la FechaHoraUltimaConexion
+     * si el usuario existe y la contraseña es correcta, y false en caso contrario.
      */
     public static function validarUsuario($codigoUsuario, $password) {
         /*
@@ -23,22 +23,33 @@ class UsuarioPDO implements UsuarioDB{
          * introducida sea correcta.
          */
         $sSelect = <<<QUERY
-            SELECT * FROM T01_Usuario
+            SELECT T01_FechaHoraUltimaConexion FROM T01_Usuario
             WHERE T01_CodUsuario='{$codigoUsuario}' AND
             T01_Password=SHA2("{$codigoUsuario}{$password}", 256);
         QUERY;
         
         $oResultado = DBPDO::ejecutarConsulta($sSelect);
+        $oUsuario = $oResultado->fetchObject();
         /*
-         * Si el fetch al resultado devuelve algún usuario, es decir, existe
-         * y su contraseña coincide con la introducida, devuelve true.
-         * En caso contrario, false.
+         * Si no existe el objeto, devuelve false. Si existe, devuelve el objeto.
          */
-        if ($oResultado->fetchObject()) {
-            return true;
-        }
-        else{
+        if(!$oUsuario){
             return false;
+        }
+        /*
+         * Si existe el usuario, modifica la fecha-hora de última conexión, añade
+         * una conexión más, y devuelve el objeto.
+         */
+        else{
+            $sUpdate = <<<QUERY
+                UPDATE T01_Usuario SET T01_NumConexiones=T01_NumConexiones+1,
+                T01_FechaHoraUltimaConexion = unix_timestamp()
+                WHERE T01_CodUsuario='{$codigoUsuario}';
+            QUERY;
+            
+            DBPDO::ejecutarConsulta($sUpdate);
+            
+            return $oUsuario;
         }
     }
     

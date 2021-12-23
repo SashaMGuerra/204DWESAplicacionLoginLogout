@@ -1,0 +1,26 @@
+/* 
+    Created on : 23 dic. 2021, 14:24:07
+    Author     : Sasha
+*/
+
+#vLogin form{
+    
+}
+
+#vLogin fieldset:first-of-type{
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 20px;
+    max-width: 150px;
+    margin: auto;
+    display: flex;
+    flex-flow: column;
+    gap: 10px;
+    text-align: center;
+}
+
+#vLogin fieldset:first-of-type input{
+    border: none;
+    border-bottom: 1px solid black;
+    padding: 10px;
+}

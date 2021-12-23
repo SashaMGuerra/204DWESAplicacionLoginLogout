@@ -12,12 +12,12 @@
     <h1>Aplicación Login-Logout</h1>
     <h2>Login</h2>
 </header>
-<main>
+<main id="vLogin">
     <form>
         <fieldset>
-            <label for="usuario">Usuario</label>
+            <label class="obligatorio" for="usuario">Usuario</label>
             <input type="text" id="usuario" name="usuario">
-            <label for="password">Contraseña</label>
+            <label class="obligatorio" for="password">Contraseña</label>
             <input type="password" id="password" name="password">
         </fieldset>
         <fieldset class="submit">

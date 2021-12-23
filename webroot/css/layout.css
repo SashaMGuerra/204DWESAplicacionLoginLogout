@@ -67,3 +67,7 @@ fieldset.submit{
     border: none;
     text-align: center;
 }
+label.obligatorio:after{
+    content: "*";
+    color: firebrick;
+}

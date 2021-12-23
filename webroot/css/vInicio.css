@@ -1,0 +1,13 @@
+/* 
+    Created on : 23 dic. 2021, 14:24:07
+    Author     : Sasha
+*/
+
+#vInicio{
+    margin: 0 10px;
+}
+
+#vInicio div.bienvenida{
+    text-align: justify;
+    max-width: 800px;
+}

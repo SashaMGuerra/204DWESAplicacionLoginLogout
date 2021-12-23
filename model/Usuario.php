@@ -14,4 +14,17 @@ class Usuario{
     private $fechaHoraUltimaConexion;
     private $fechaHoraUltimaConexionAnterior;
     private $perfil;
+    
+    function __construct($codUsuario, $password, $descUsuario, $numAccesos, $fechaHoraUltimaConexion, $fechaHoraUltimaConexionAnterior, $perfil) {
+        $this->codUsuario = $codUsuario;
+        $this->password = $password;
+        $this->descUsuario = $descUsuario;
+        $this->numAccesos = $numAccesos;
+        $this->fechaHoraUltimaConexion = $fechaHoraUltimaConexion;
+        $this->fechaHoraUltimaConexionAnterior = $fechaHoraUltimaConexionAnterior;
+        $this->perfil = $perfil;
+    }
+    
+    
+
 }

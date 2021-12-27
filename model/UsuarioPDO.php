@@ -11,7 +11,7 @@ class UsuarioPDO implements UsuarioDB{
      * Comprobación de la existencia previa de un usuario y de si su contraseña
      * es correcta en la base de datos.
      * 
-     * @param String $codigoUsuario Código del usuario a comprpobar.
+     * @param String $codigoUsuario Código del usuario a comprobar.
      * @param String $password Contraseña del usuario a comprobar.
      * @return Object|boolean Devuelve el objeto únicamente con la FechaHoraUltimaConexion
      * si el usuario existe y la contraseña es correcta, y false en caso contrario.
@@ -37,19 +37,10 @@ class UsuarioPDO implements UsuarioDB{
             return false;
         }
         /*
-         * Si existe el usuario, modifica la fecha-hora de última conexión, añade
-         * una conexión más, y devuelve el objeto.
+         * Si existe el usuario, 
          */
         else{
-            $sUpdate = <<<QUERY
-                UPDATE T01_Usuario SET T01_NumConexiones=T01_NumConexiones+1,
-                T01_FechaHoraUltimaConexion = unix_timestamp()
-                WHERE T01_CodUsuario='{$codigoUsuario}';
-            QUERY;
-            
-            DBPDO::ejecutarConsulta($sUpdate);
-            
-            return $oUsuario;
+            return self::registrarUltimaConexion($codigoUsuario);
         }
     }
     
@@ -75,9 +66,53 @@ class UsuarioPDO implements UsuarioDB{
     }
     
     /**
+     * Dado un código de usuario, modifica la fecha-hora de última conexión, añade 
+     * una conexión más, y devuelve el objeto.
+     * @param String $codigoUsuario Código del usuario al que registrar una nueva conexión.
+     * @return PDOStatement Resultado del update.
+     */
+    public static function registrarUltimaConexion($codigoUsuario){
+        $sUpdate = <<<QUERY
+            UPDATE T01_Usuario SET T01_NumConexiones=T01_NumConexiones+1,
+            T01_FechaHoraUltimaConexion = unix_timestamp()
+            WHERE T01_CodUsuario='{$codigoUsuario}';
+        QUERY;
+
+        return DBPDO::ejecutarConsulta($sUpdate);
+    }
+    
+    /*
+     * 
+     */
+    public static function buscaUsuariosporDesc(){
+        
+    }
+    
+    /**
      * 
      */
     public static function validarCodNoExiste(){
+        
+    }
+    
+    /*
+     * 
+     */
+    public static function creaOpinion(){
+        
+    }
+    
+    /*
+     * 
+     */
+    public static function modificaOpinion(){
+        
+    }
+    
+    /*
+     * 
+     */
+    public static function borraOpinion(){
         
     }
 }

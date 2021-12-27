@@ -12,7 +12,7 @@
     <h2>Inicio</h2>
 </header>
 <main id="vInicio">
-    <div class="bienvenida">Bienvenid@ <span class="user"><?php echo $_SESSION['usuarioDAW204AppLoginLogout'] ?></span>, esta es la <?php echo $iNumConexiones ?>ª vez que se conecta<?php
+    <div class="bienvenida">Bienvenid@ <span class="user"><?php echo $sDescUsuario ?></span>, esta es la <?php echo $iNumConexiones ?>ª vez que se conecta<?php
         if (!is_null($_SESSION['FechaHoraUltimaConexionAnterior'])) {
             ?> y su última conexión fue <?php
         echo date('d/m/Y H:i:s',$_SESSION['FechaHoraUltimaConexionAnterior']);

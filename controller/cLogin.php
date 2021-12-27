@@ -30,7 +30,8 @@ if(isset($_REQUEST['login'])){
             $_SESSION['usuarioDAW204AppLoginLogout'] = $_REQUEST['usuario'];
             $_SESSION['FechaHoraUltimaConexionAnterior'] = $oUsuarioValido->T01_FechaHoraUltimaConexion;
             
-            require_once $aControladores['inicio'];
+            header('Location: index.php');
+            exit;
         }
     }
 }

@@ -89,10 +89,17 @@ class UsuarioPDO implements UsuarioDB{
     }
     
     /**
-     * 
+     * Dado un código de usuario, comprueba que no exista ya en la base de datos.
+     * @param String $codigoUsuario Código del usuario al que registrar una nueva conexión.
+     * @return PDOStatement Resultado del update.
      */
-    public static function validarCodNoExiste(){
-        
+    public static function validarCodNoExiste($codigoUsuario){
+        $sSelect = <<<QUERY
+            SELECT T01_CodUsuario FROM T01_Usuario
+            WHERE T01_CodUsuario='{$codigoUsuario}';
+        QUERY;
+            
+        return DBPDO::ejecutarConsulta($sSelect); 
     }
     
     /*

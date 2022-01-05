@@ -10,18 +10,29 @@
 // Constantes de la aplicación.
 require_once './config/configApp.php';
 
-// Recuperación de la sesión para comprobar si ha iniciado sesión el usuario.
+/*
+ * Inicio o recuperación de la sesión.
+ */
 session_start();
 
-/**
- * Si no se ha hecho login, manda al usuario a la página de login. Si no, a la
- * de inicio.
+var_dump($_SESSION);
+
+/*
+ * Si la variable de sesión que indica la página a cargar no está indicada,
+ * o si está indicada pero no se ha hecho login, carga con el login.
  */
-if(!isset($_SESSION['usuarioDAW204AppLoginLogout'])){
-    require_once $aControladores['login'];
-    exit;
+if(!isset($_SESSION['pagina']) || !isset($_SESSION['usuarioDAW204AppLoginLogout'])){
+    $_SESSION['pagina'] = $aControladores['login'];
 }
+// En cualquier otro caso, se carga el inicio.
 else{
-    require_once $aControladores['inicio'];
+    $_SESSION['pagina'] = $aControladores['inicio'];
 }
 
+// Si se quiere registrar, manda a la página de registro.
+if(isset($_REQUEST['registrarse'])){
+    $_SESSION['pagina'] = $aControladores['registro'];
+}
+
+// Cargado de la página indicada.
+require_once $_SESSION['pagina'];

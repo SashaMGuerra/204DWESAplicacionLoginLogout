@@ -27,12 +27,14 @@ require_once 'model/DBPDO.php';
 // Directorios de los controladores.
 $aControladores = [
     'login' => 'controller/cLogin.php',
-    'inicio' => 'controller/cInicio.php'
+    'inicio' => 'controller/cInicio.php',
+    'registro' => 'controller/cRegistro.php'
 ];
 
 // Directorios de las vistas.
 $aVistas = [
     'layout' => 'view/Layout.php',
     'login' => 'view/vLogin.php',
-    'inicio' => 'view/vInicio.php'
+    'inicio' => 'view/vInicio.php',
+    'registro' => 'view/vRegistro.php'
 ];

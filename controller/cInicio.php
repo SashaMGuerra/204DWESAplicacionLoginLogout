@@ -5,7 +5,7 @@
  * @version 1.0
  * 
  * Controlador de la página de inicio.
- * Requiere la vista del inicio.
+ * Destruye la sesión cuando le es requerido. Requiere la vista del inicio.
  */
 
 /*

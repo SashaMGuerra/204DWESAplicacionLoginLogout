@@ -16,6 +16,7 @@
         <link href="webroot/css/layout.css" rel="stylesheet" type="text/css"/>
         <link href="webroot/css/vLogin.css" rel="stylesheet" type="text/css"/>
         <link href="webroot/css/vInicio.css" rel="stylesheet" type="text/css"/>
+        <link href="webroot/css/vRegistro.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <?php require_once $aVistas[$sVistaEnCurso]; // Requiere la vista indicada en el controlador correspondiente. ?>

@@ -1,5 +1,5 @@
 /**
- * Author:  Isabel Martínez Guerra
+ * Author:  Sasha
  * Fecha de creación: 28/11/2021
 
  * Script de carga inicial en tablas.

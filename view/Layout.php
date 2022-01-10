@@ -1,20 +1,25 @@
+<?php
+/**
+ * @author Sasha
+ * @since 22/12/2021
+ * @version 1.0
+ * 
+ * Layout, base de las vistas.
+ * Contiene el head con el estilo básico, título y metas. También footer.
+ */
+?>
 <!DOCTYPE html>
-<!--
-    Autor: Isabel Martínez Guerra.
-    Fecha de creación: 21/12/2021.
--->
 <html lang="ES">
     <head>
         <meta charset="UTF-8">
         <title>IMG - App Login-Logout</title>
         <link href="webroot/css/layout.css" rel="stylesheet" type="text/css"/>
+        <link href="webroot/css/vLogin.css" rel="stylesheet" type="text/css"/>
+        <link href="webroot/css/vInicio.css" rel="stylesheet" type="text/css"/>
+        <link href="webroot/css/vRegistro.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <header>
-            <h1>Aplicación Login-Logout</h1>
-        </header>
-        <main>
-        </main>
+        <?php require_once $aVistas[$sVistaEnCurso]; // Requiere la vista indicada en el controlador correspondiente. ?>
         <footer>
             <hr/>
             <div class="info">

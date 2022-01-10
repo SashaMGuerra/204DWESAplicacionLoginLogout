@@ -17,13 +17,14 @@ if(isset($_REQUEST['cancelar'])){
     exit;
 }
 
+// Variable de mensaje de error.
+$sError = '';
+
 /*
  * Si se selecciona crear usuario, crea el usuario y manda al usuario a la página
  * de inicio.
  */
-if(isset($_REQUEST['anadirUsuario'])){
-    $_SESSION['prueba'] = 'prueba';
-    
+if(isset($_REQUEST['anadirUsuario'])){    
     /*
      * Si el usuario, descripción o password no están definidos, o si se ha introducido de
      * forma incorrecta, pone la entrada como incorrecta.
@@ -40,7 +41,13 @@ if(isset($_REQUEST['anadirUsuario'])){
     else{
         // Comprobación si el usuario ya existe.
         $oUsuarioValido = UsuarioPDO::validarCodNoExiste($_REQUEST['usuario']);
+        /*
+         * Si el usuario no existe en la base de datos, lo crea, inicia sesión y manda al
+         * usuario a la página de inicio.
+         */
         if($oUsuarioValido){
+            UsuarioPDO::altaUsuario($_REQUEST['usuario'], $_REQUEST['password'], $_REQUEST['descripcion']);
+            
             // Almacenamiento del usuario y la fecha-hora de última conexión.
             $_SESSION['usuarioDAW204AppLoginLogout'] = $_REQUEST['usuario'];
             $_SESSION['FechaHoraUltimaConexionAnterior'] = $oUsuarioValido->T01_FechaHoraUltimaConexion;
@@ -52,7 +59,7 @@ if(isset($_REQUEST['anadirUsuario'])){
     }
 }
 
-$sError = '';
+
 
 // Carga de la página de registrso. Antes de requerir el layout, le indica qué vista debe requerir.
 $sVistaEnCurso = 'registro';

@@ -9,6 +9,16 @@
  */
 
 /*
+ * Si se desea acceder a la página de registro, la indica y recarga el index.
+ */
+if(isset($_REQUEST['registrarse'])){
+    $_SESSION['pagina'] = $aControladores['registro'];
+    header('Location: index.php');
+    exit;
+    
+}
+
+/*
  * Si se ha enviado el formulario para hacer login, comprueba que el usuario
  * y contraseña sean correctos para iniciar sesión.
  */
@@ -25,11 +35,10 @@ if(isset($_REQUEST['login'])){
          */
         $oUsuarioValido = UsuarioPDO::validarUsuario($_REQUEST['usuario'], $_REQUEST['password']);
         if($oUsuarioValido){
-            /* Inicio de la sesión para almacenar el usuario */
-            session_start();
             $_SESSION['usuarioDAW204AppLoginLogout'] = $_REQUEST['usuario'];
             $_SESSION['FechaHoraUltimaConexionAnterior'] = $oUsuarioValido->T01_FechaHoraUltimaConexion;
             
+            $_SESSION['pagina'] = $aControladores['inicio'];
             header('Location: index.php');
             exit;
         }

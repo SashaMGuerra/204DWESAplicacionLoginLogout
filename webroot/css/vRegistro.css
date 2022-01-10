@@ -29,3 +29,9 @@
     border-bottom: 1px solid black;
     padding: 10px;
 }
+
+#vRegistro div.error{
+    text-align: justify;
+    font-size: small;
+    color: red;
+}

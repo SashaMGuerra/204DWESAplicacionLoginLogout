@@ -31,24 +31,39 @@ class UsuarioPDO implements UsuarioDB{
         $oResultado = DBPDO::ejecutarConsulta($sSelect);
         $oUsuario = $oResultado->fetchObject();
         /*
-         * Si no existe el objeto, devuelve false. Si existe, devuelve el objeto.
+         * Si existe el objeto, registra la última conexión y lo devuelve.
          */
-        if(!$oUsuario){
-            return false;
+        if($oUsuario){
+            self::registrarUltimaConexion($codigoUsuario);
+            return $oUsuario;
         }
         /*
-         * Si existe el usuario, 
+         * Si no existe, devuelve false.
          */
         else{
-            return self::registrarUltimaConexion($codigoUsuario);
+            return false;
         }
     }
     
     /**
+     * Inserción, registro de un usuario en la base de datos.
      * 
+     * @param String $codigoUsuario Código del usuario que se va a registrar.
+     * @param String $password Contraseña del usuario que se va a registrar.
+     * @param String $descUsuario Descripción (nombre y apellidos) del usuario que se va a registrar.
+     * @return PDOStatement Resultado del insert.
      */
-    public static function altaUsuario(){
+    public static function altaUsuario($codigoUsuario, $password, $descUsuario){
+        /*
+         * Query de inserción del usuario, dados su código de usuario, contraseña
+         * y descripción.
+         */
+        $sInsert = <<<QUERY
+            INSERT INTO T01_Usuario(T01_CodUsuario, T01_Password, T01_DescUsuario, T01_FechaHoraUltimaConexion) VALUES
+            ("{$codigoUsuario}", SHA2("{$codigoUsuario}{$password}", 256), "{$descUsuario}", UNIX_TIMESTAMP());
+        QUERY;
         
+        return DBPDO::ejecutarConsulta($sInsert);
     }
     
     /**

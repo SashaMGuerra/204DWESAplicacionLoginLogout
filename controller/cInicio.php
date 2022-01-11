@@ -23,7 +23,6 @@ if(isset($_REQUEST['logout'])){
 /*
  * Conexión a la base de datos para conocer cuántas la descripción del usuario,
  * el número de conexiones que ha hecho y su imagen de usuario.
- */
 $sSelect = <<<QUERY
     SELECT T01_DescUsuario, T01_NumConexiones, T01_ImagenUsuario FROM T01_Usuario
     WHERE T01_CodUsuario='{$_SESSION['usuarioDAW204AppLoginLogout']}';
@@ -32,9 +31,11 @@ $oResultado = DBPDO::ejecutarConsulta($sSelect)->fetchObject();
 
 $sDescUsuario = $oResultado->T01_DescUsuario;
 $iNumConexiones = $oResultado->T01_NumConexiones; 
+ */
 
+$sDescUsuario = $_SESSION['usuarioDAW204AppLoginLogout']->getDescUsuario();
+$iNumConexiones = $_SESSION['usuarioDAW204AppLoginLogout']->getNumAccesos();
 
-// Carga de la página de inicio. Antes de requerir el layout, le indica qué vista debe requerir.
-$sVistaEnCurso = 'inicio';
+// Carga de la página de inicio.
 require_once $aVistas['layout'];
     

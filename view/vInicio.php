@@ -13,9 +13,9 @@
 </header>
 <main id="vInicio">
     <div class="bienvenida">Bienvenid@ <span class="user"><?php echo $sDescUsuario ?></span>, esta es la <?php echo $iNumConexiones ?>ª vez que se conecta<?php
-        if (isset($_SESSION['FechaHoraUltimaConexionAnterior'])) {
+        if (!empty($_SESSION['usuarioDAW204AppLoginLogout']->getFechaHoraUltimaConexionAnterior())) {
             ?> y su última conexión fue <?php
-        echo date('d/m/Y H:i:s',$_SESSION['FechaHoraUltimaConexionAnterior']);
+        echo date('d/m/Y H:i:s',$_SESSION['usuarioDAW204AppLoginLogout']->getFechaHoraUltimaConexionAnterior());
         }
         ?>.</div>
     <form method="post">

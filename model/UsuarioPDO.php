@@ -13,8 +13,8 @@ class UsuarioPDO implements UsuarioDB{
      * 
      * @param String $codigoUsuario Código del usuario a comprobar.
      * @param String $password Contraseña del usuario a comprobar.
-     * @return Object|boolean Devuelve el objeto únicamente con la FechaHoraUltimaConexion
-     * si el usuario existe y la contraseña es correcta, y false en caso contrario.
+     * @return Object|boolean Devuelve el objeto si el usuario existe y la contraseña
+     * si es correcta, y false en caso contrario.
      */
     public static function validarUsuario($codigoUsuario, $password) {
         /*
@@ -23,7 +23,7 @@ class UsuarioPDO implements UsuarioDB{
          * introducida sea correcta.
          */
         $sSelect = <<<QUERY
-            SELECT T01_FechaHoraUltimaConexion FROM T01_Usuario
+            SELECT * FROM T01_Usuario
             WHERE T01_CodUsuario='{$codigoUsuario}' AND
             T01_Password=SHA2("{$codigoUsuario}{$password}", 256);
         QUERY;

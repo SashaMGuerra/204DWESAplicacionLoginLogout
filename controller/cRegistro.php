@@ -12,7 +12,7 @@
  * Si se cancela, devuelve a la página de login.
  */
 if(isset($_REQUEST['cancelar'])){
-    $_SESSION['pagina'] = $aControladores['login'];
+    $_SESSION['pagina'] = 'login';
     header('Location: index.php');
     exit;
 }
@@ -49,9 +49,9 @@ if(isset($_REQUEST['anadirUsuario'])){
             UsuarioPDO::altaUsuario($_REQUEST['usuario'], $_REQUEST['password'], $_REQUEST['descripcion']);
             
             // Almacenamiento del usuario y la fecha-hora de última conexión.
-            $_SESSION['usuarioDAW204AppLoginLogout'] = $_REQUEST['usuario'];
+            $_SESSION['usuarioDAW204AppLoginLogout'] = new Usuario($_REQUEST['usuario'], $_REQUEST['password'], $_REQUEST['descripcion'], 1, time(), null, 'usuario');
             
-            $_SESSION['pagina'] = $aControladores['inicio'];
+            $_SESSION['pagina'] = 'inicio';
             header('Location: index.php');
             exit;
         }
@@ -61,9 +61,6 @@ if(isset($_REQUEST['anadirUsuario'])){
     }
 }
 
-
-
-// Carga de la página de registrso. Antes de requerir el layout, le indica qué vista debe requerir.
-$sVistaEnCurso = 'registro';
+// Carga de la vista del registro.
 require_once $aVistas['layout'];
     

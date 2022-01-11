@@ -19,7 +19,7 @@
         <link href="webroot/css/vRegistro.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <?php require_once $aVistas[$sVistaEnCurso]; // Requiere la vista indicada en el controlador correspondiente. ?>
+        <?php require_once $aVistas[$_SESSION['pagina']]; // Requiere la vista indicada en la variable de página. ?>
         <footer>
             <hr/>
             <div class="info">

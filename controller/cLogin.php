@@ -12,7 +12,7 @@
  * Si se desea acceder a la página de registro, la indica y recarga el index.
  */
 if(isset($_REQUEST['registrarse'])){
-    $_SESSION['pagina'] = $aControladores['registro'];
+    $_SESSION['pagina'] = 'registro';
     header('Location: index.php');
     exit;
     
@@ -35,10 +35,14 @@ if(isset($_REQUEST['login'])){
          */
         $oUsuarioValido = UsuarioPDO::validarUsuario($_REQUEST['usuario'], $_REQUEST['password']);
         if($oUsuarioValido){
+            $_SESSION['usuarioDAW204AppLoginLogout'] = new Usuario($oUsuarioValido->T01_CodUsuario, $oUsuarioValido->T01_Password, $oUsuarioValido->T01_DescUsuario, $oUsuarioValido->T01_NumConexiones, time(), $oUsuarioValido->T01_FechaHoraUltimaConexion, $oUsuarioValido->T01_Perfil);
+            /*
             $_SESSION['usuarioDAW204AppLoginLogout'] = $_REQUEST['usuario'];
             $_SESSION['FechaHoraUltimaConexionAnterior'] = $oUsuarioValido->T01_FechaHoraUltimaConexion;
+             * 
+             */
             
-            $_SESSION['pagina'] = $aControladores['inicio'];
+            $_SESSION['pagina'] = 'inicio';
             header('Location: index.php');
             exit;
         }
@@ -49,5 +53,4 @@ if(isset($_REQUEST['login'])){
  * Si no se ha enviado el formulario, o si se ha enviado pero estaba incorrecto,
  * se muestra la vista del login.
  */
-$sVistaEnCurso = 'login';
 require_once $aVistas['layout'];

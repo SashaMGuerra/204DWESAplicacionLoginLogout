@@ -13,7 +13,7 @@
     <h2>Login</h2>
 </header>
 <main id="vLogin">
-    <form>
+    <form method="post">
         <fieldset>
             <label class="obligatorio" for="usuario">Usuario</label>
             <input type="text" id="usuario" name="usuario">

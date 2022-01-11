@@ -17,7 +17,7 @@ session_start();
  * Si no hay una página a cargar indicada y además no se ha hecho login, carga 
  * el login.
  */
-if(!isset($_SESSION['pagina']) && !isset($_SESSION['usuarioDAW204AppLoginLogout'])){
+if(!isset($_SESSION['pagina'])){
     $_SESSION['pagina'] = $aControladores['login'];
 }
 

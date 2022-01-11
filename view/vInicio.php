@@ -13,12 +13,12 @@
 </header>
 <main id="vInicio">
     <div class="bienvenida">Bienvenid@ <span class="user"><?php echo $sDescUsuario ?></span>, esta es la <?php echo $iNumConexiones ?>ª vez que se conecta<?php
-        if (!is_null($_SESSION['FechaHoraUltimaConexionAnterior'])) {
+        if (isset($_SESSION['FechaHoraUltimaConexionAnterior'])) {
             ?> y su última conexión fue <?php
         echo date('d/m/Y H:i:s',$_SESSION['FechaHoraUltimaConexionAnterior']);
         }
         ?>.</div>
-    <form>
+    <form method="post">
         <fieldset class="submit">
             <button type="submit" id="logout" name="logout" value="logout">Cerrar sesión</button>
         </fieldset>

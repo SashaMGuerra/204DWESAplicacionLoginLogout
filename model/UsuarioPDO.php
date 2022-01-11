@@ -106,7 +106,8 @@ class UsuarioPDO implements UsuarioDB{
     /**
      * Dado un código de usuario, comprueba que no exista ya en la base de datos.
      * @param String $codigoUsuario Código del usuario al que registrar una nueva conexión.
-     * @return PDOStatement Resultado del update.
+     * @return Object|boolean Devuelve el objeto usuario si ya existe en la
+     * base de datos, o false si no.
      */
     public static function validarCodNoExiste($codigoUsuario){
         $sSelect = <<<QUERY
@@ -114,7 +115,7 @@ class UsuarioPDO implements UsuarioDB{
             WHERE T01_CodUsuario='{$codigoUsuario}';
         QUERY;
             
-        return DBPDO::ejecutarConsulta($sSelect); 
+        return DBPDO::ejecutarConsulta($sSelect)->fetchObject();
     }
     
     /*

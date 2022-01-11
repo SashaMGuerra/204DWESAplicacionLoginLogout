@@ -39,22 +39,24 @@ if(isset($_REQUEST['anadirUsuario'])){
      * datos.
      */
     else{
-        // Comprobación si el usuario ya existe.
+        // Comprobación si el usuario ya existe.        
         $oUsuarioValido = UsuarioPDO::validarCodNoExiste($_REQUEST['usuario']);
         /*
          * Si el usuario no existe en la base de datos, lo crea, inicia sesión y manda al
          * usuario a la página de inicio.
          */
-        if($oUsuarioValido){
+        if(!$oUsuarioValido){
             UsuarioPDO::altaUsuario($_REQUEST['usuario'], $_REQUEST['password'], $_REQUEST['descripcion']);
             
             // Almacenamiento del usuario y la fecha-hora de última conexión.
             $_SESSION['usuarioDAW204AppLoginLogout'] = $_REQUEST['usuario'];
-            $_SESSION['FechaHoraUltimaConexionAnterior'] = $oUsuarioValido->T01_FechaHoraUltimaConexion;
             
             $_SESSION['pagina'] = $aControladores['inicio'];
             header('Location: index.php');
             exit;
+        }
+        else{
+            $sError = 'El usuario ya existe.';
         }
     }
 }

@@ -13,7 +13,7 @@
     <h2>Registro</h2>
 </header>
 <main id="vRegistro">
-    <form>
+    <form method="post">
         <fieldset>
             <ul>
                 <li><label class="obligatorio" for='usuario' >Usuario</label></li>

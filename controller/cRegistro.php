@@ -8,11 +8,9 @@
  * Requiere la vista del registro.
  */
 
-/**
- * Si se cancela, devuelve a la página de login.
- */
+// Si se cancela, devuelve a la página de inicio público.
 if(isset($_REQUEST['cancelar'])){
-    $_SESSION['pagina'] = 'login';
+    $_SESSION['paginaEnCurso'] = 'inicioPublico';
     header('Location: index.php');
     exit;
 }
@@ -51,7 +49,7 @@ if(isset($_REQUEST['anadirUsuario'])){
             // Almacenamiento del usuario y la fecha-hora de última conexión.
             $_SESSION['usuarioDAW204AppLoginLogout'] = new Usuario($_REQUEST['usuario'], $_REQUEST['password'], $_REQUEST['descripcion'], 1, time(), null, 'usuario');
             
-            $_SESSION['pagina'] = 'inicio';
+            $_SESSION['paginaEnCurso'] = 'inicioPrivado';
             header('Location: index.php');
             exit;
         }

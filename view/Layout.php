@@ -14,12 +14,16 @@
         <meta charset="UTF-8">
         <title>IMG - App Login-Logout</title>
         <link href="webroot/css/layout.css" rel="stylesheet" type="text/css"/>
+        <link href="webroot/css/vInicioPublico.css" rel="stylesheet" type="text/css"/>
         <link href="webroot/css/vLogin.css" rel="stylesheet" type="text/css"/>
-        <link href="webroot/css/vInicio.css" rel="stylesheet" type="text/css"/>
+        <link href="webroot/css/vInicioPrivado.css" rel="stylesheet" type="text/css"/>
         <link href="webroot/css/vRegistro.css" rel="stylesheet" type="text/css"/>
+        <link href="webroot/css/vDetalle.css" rel="stylesheet" type="text/css"/>
+        <link href="webroot/css/vWIP.css" rel="stylesheet" type="text/css"/>
+        <link href="webroot/css/vError.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <?php require_once $aVistas[$_SESSION['pagina']]; // Requiere la vista indicada en la variable de página. ?>
+        <?php require_once $aVistas[$_SESSION['paginaEnCurso']]; // Requiere la vista indicada en la variable de página. ?>
         <footer>
             <hr/>
             <div class="info">

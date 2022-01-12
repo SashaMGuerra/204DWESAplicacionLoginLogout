@@ -8,14 +8,11 @@
  * Requiere la vista del login.
  */
 
-/*
- * Si se desea acceder a la página de registro, la indica y recarga el index.
- */
-if(isset($_REQUEST['registrarse'])){
-    $_SESSION['pagina'] = 'registro';
+// Si se cancela la operación de login, regresa al inicio público.
+if(isset($_REQUEST['cancelar'])){
+    $_SESSION['paginaEnCurso'] = 'inicioPublico';
     header('Location: index.php');
     exit;
-    
 }
 
 /*
@@ -36,13 +33,8 @@ if(isset($_REQUEST['login'])){
         $oUsuarioValido = UsuarioPDO::validarUsuario($_REQUEST['usuario'], $_REQUEST['password']);
         if($oUsuarioValido){
             $_SESSION['usuarioDAW204AppLoginLogout'] = new Usuario($oUsuarioValido->T01_CodUsuario, $oUsuarioValido->T01_Password, $oUsuarioValido->T01_DescUsuario, $oUsuarioValido->T01_NumConexiones, time(), $oUsuarioValido->T01_FechaHoraUltimaConexion, $oUsuarioValido->T01_Perfil);
-            /*
-            $_SESSION['usuarioDAW204AppLoginLogout'] = $_REQUEST['usuario'];
-            $_SESSION['FechaHoraUltimaConexionAnterior'] = $oUsuarioValido->T01_FechaHoraUltimaConexion;
-             * 
-             */
-            
-            $_SESSION['pagina'] = 'inicio';
+                        
+            $_SESSION['paginaEnCurso'] = 'inicioPrivado';
             header('Location: index.php');
             exit;
         }

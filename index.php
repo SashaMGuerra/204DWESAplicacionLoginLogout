@@ -16,9 +16,9 @@ session_start();
 /*
  * Si no hay una página a cargar indicada, carga el login.
  */
-if(!isset($_SESSION['pagina'])){
-    $_SESSION['pagina'] = 'login';
+if(!isset($_SESSION['paginaEnCurso'])){
+    $_SESSION['paginaEnCurso'] = 'inicioPublico';
 }
 
 // Cargado de la página indicada.
-require_once $aControladores[$_SESSION['pagina']];
+require_once $aControladores[$_SESSION['paginaEnCurso']];

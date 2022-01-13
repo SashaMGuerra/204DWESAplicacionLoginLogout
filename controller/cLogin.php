@@ -15,30 +15,62 @@ if(isset($_REQUEST['cancelar'])){
     exit;
 }
 
+// Información del formulario.
+$aFormulario = [
+    'usuario' => '',
+    'password' => ''
+];
+
 /*
- * Si se ha enviado el formulario para hacer login, comprueba que el usuario
+ * Si se ha enviado el formulario para hacer login, valida la entrada y comprueba que el usuario
  * y contraseña sean correctos para iniciar sesión.
  */
-if(isset($_REQUEST['login'])){    
+if(isset($_REQUEST['login'])){
+    // Manejador de errores.
+    $bEntradaOK = true;
+
+    // Si los datos introducidos no son válidos, pone la entrada a false.
+    if (validacionFormularios::comprobarAlfaNumerico($_REQUEST['usuario'], 8, 4, OBLIGATORIO)
+            || validacionFormularios::comprobarAlfaNumerico($_REQUEST['password'], 8, 4, OBLIGATORIO)) {
+        $bEntradaOK = false;
+    }
     /*
      * Si el usuario y password se han introducido de forma correcta, se conecta
      * con la base de datos para comprobar su existencia.
      */
-    if (validacionFormularios::comprobarAlfaNumerico($_REQUEST['usuario'], 8, 4, OBLIGATORIO) == null
-            && validacionFormularios::comprobarAlfaNumerico($_REQUEST['password'], 8, 4, OBLIGATORIO) == null) {
+    else{
+        /* Recogida de información */
+        $aFormulario['usuario'] = $_REQUEST['usuario'];
+        $aFormulario['password'] = $_REQUEST['password'];
+        
         /**
-         * Si el usuario existe y la contraseña es correcta, crea una nueva
-         * sesión y lleva al usuario a la página de inicio.
+         * Si el usuario no existe o la contraseña es incorrecta, pone la entradaOK
+         * a false.
          */
-        $oUsuarioValido = UsuarioPDO::validarUsuario($_REQUEST['usuario'], $_REQUEST['password']);
-        if($oUsuarioValido){
-            $_SESSION['usuarioDAW204AppLoginLogout'] = new Usuario($oUsuarioValido->T01_CodUsuario, $oUsuarioValido->T01_Password, $oUsuarioValido->T01_DescUsuario, $oUsuarioValido->T01_NumConexiones, time(), $oUsuarioValido->T01_FechaHoraUltimaConexion, $oUsuarioValido->T01_Perfil);
-                        
-            $_SESSION['paginaEnCurso'] = 'inicioPrivado';
-            header('Location: index.php');
-            exit;
+        $oUsuarioValido = UsuarioPDO::validarUsuario($aFormulario['usuario'], $aFormulario['password']);
+        if(!$oUsuarioValido){
+            $bEntradaOK = false;
         }
     }
+}
+/* 
+ * Si no se ha enviado el formulario, pone el manejador a false.
+ */
+else{
+    $bEntradaOK = false;
+}
+
+/*
+ * Si la entrada es correcta, se conecta con la base de datos para registrar
+ * la última conexión y pasar a la página de inicio.
+ */
+if ($bEntradaOK) {
+    UsuarioPDO::registrarUltimaConexion($oUsuarioValido);
+    $_SESSION['usuarioDAW204AppLoginLogout'] = $oUsuarioValido;
+
+    $_SESSION['paginaEnCurso'] = 'inicioPrivado';
+    header('Location: index.php');
+    exit;
 }
 
 /*

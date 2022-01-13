@@ -9,17 +9,17 @@
 
 // Si se selecciona cerrar la página y volver al inicio privado, lo hace.
 if(isset($_REQUEST['cerrar'])){
-    $_SESSION['paginaEnCurso'] = 'inicioPrivado';
+    $_SESSION['paginaEnCurso'] = $_SESSION['error']->getPaginaSiguiente();
     header('Location: index.php');
     exit;
 }
 
 // Array con la información de la vista.
 $aVError = [
-    'error' => $_SESSION['error']->getMessage(),
-    'codigo' => $_SESSION['error']->getCode(),
-    'archivo' => $_SESSION['error']->getFile(),
-    'info' => $_SESSION['error']->getErrorInfo()
+    'error' => $_SESSION['error']->getDescError(),
+    'codigo' => $_SESSION['error']->getCodError(),
+    'archivo' => $_SESSION['error']->getArchivoError(),
+    'linea' => $_SESSION['error']->getLineaError()
 ];
 
 // Carga de la página de inicio.

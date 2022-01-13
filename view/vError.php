@@ -28,8 +28,8 @@
                 <td><?php echo $aVError['archivo']; ?></td>
             </tr>
             <tr>
-                <th>Información</th>
-                <td><?php echo $aVError['info']; ?></td>
+                <th>Línea</th>
+                <td><?php echo $aVError['linea']; ?></td>
             </tr>
         </table>
     </div>

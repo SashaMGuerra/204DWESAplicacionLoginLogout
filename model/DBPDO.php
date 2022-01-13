@@ -31,7 +31,7 @@ class DBPDO implements DB{
              * Si sucede alguna excepción, carga el error en la variable de sesión
              * y envía al usuario a la página de error.
              */
-            $_SESSION['error'] = new AppError($exception->getMessage(), $exception->getCode(), $exception->getFile(), $exception->getLine(), $exception->errorInfo[2], $exception->xdebug_message);
+            $_SESSION['error'] = new AppError($exception->getCode(), $exception->getMessage(), $exception->getFile(), $exception->getLine(), 'inicioPrivado');
             $_SESSION['paginaEnCurso'] = 'error';
             header('Location: index.php');
             exit;

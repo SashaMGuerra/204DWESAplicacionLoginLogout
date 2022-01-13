@@ -15,14 +15,24 @@ if(isset($_REQUEST['cancelar'])){
     exit;
 }
 
+// Información del formulario.
+$aFormulario = [
+    'usuario' => '',
+    'descripcion' => '',
+    'password' => ''
+];
+
 // Variable de mensaje de error.
 $sError = '';
 
 /*
- * Si se selecciona crear usuario, crea el usuario y manda al usuario a la página
- * de inicio.
+ * Si se selecciona crear usuario, valida la entrada y comprueba que el usuario
+ * no exista ya en la base de datos.
  */
-if(isset($_REQUEST['anadirUsuario'])){    
+if(isset($_REQUEST['anadirUsuario'])){   
+    // Manejador de errores.
+    $bEntradaOK = true;
+    
     /*
      * Si el usuario, descripción o password no están definidos, o si se ha introducido de
      * forma incorrecta, pone la entrada como incorrecta.
@@ -33,30 +43,41 @@ if(isset($_REQUEST['anadirUsuario'])){
         $sError = 'Tanto el usuario como la contraseña deben tener entre 8 y 4 caracteres.<br>Nombre y apellidos deben tener mínimo 3 caracteres.';
     }
     /*
-     * Si la entrada es correcta, comprueba si existe el usuario en la base de 
+     * Si la entrada es válida, comprueba si existe el usuario en la base de 
      * datos.
      */
-    else{
-        // Comprobación si el usuario ya existe.        
+    else{      
         $oUsuarioValido = UsuarioPDO::validarCodNoExiste($_REQUEST['usuario']);
-        /*
-         * Si el usuario no existe en la base de datos, lo crea, inicia sesión y manda al
-         * usuario a la página de inicio.
-         */
-        if(!$oUsuarioValido){
-            UsuarioPDO::altaUsuario($_REQUEST['usuario'], $_REQUEST['password'], $_REQUEST['descripcion']);
-            
-            // Almacenamiento del usuario y la fecha-hora de última conexión.
-            $_SESSION['usuarioDAW204AppLoginLogout'] = new Usuario($_REQUEST['usuario'], $_REQUEST['password'], $_REQUEST['descripcion'], 1, time(), null, 'usuario');
-            
-            $_SESSION['paginaEnCurso'] = 'inicioPrivado';
-            header('Location: index.php');
-            exit;
-        }
-        else{
+        if($oUsuarioValido){
             $sError = 'El usuario ya existe.';
         }
     }
+    
+    // Si hay algún error, pone la entradaOK a false.
+    if(!empty($sError)){
+        $bEntradaOK = false;
+    }
+}
+/* 
+ * Si no se ha enviado el formulario, pone el manejador a false.
+ */
+else{
+    $bEntradaOK = false;
+}
+
+/*
+ * Si la entrada es correcta, se conecta con la base de datos para crear el usuario,
+ * iniciar sesión y enviar a la página de inicio.
+ */
+if($bEntradaOK){
+    $oUsuario = UsuarioPDO::altaUsuario($_REQUEST['usuario'], $_REQUEST['password'], $_REQUEST['descripcion']);
+            
+    // Almacenamiento del usuario y la fecha-hora de última conexión.
+    $_SESSION['usuarioDAW204AppLoginLogout'] = $oUsuario;
+
+    $_SESSION['paginaEnCurso'] = 'inicioPrivado';
+    header('Location: index.php');
+    exit;
 }
 
 // Carga de la vista del registro.

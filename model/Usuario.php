@@ -57,6 +57,12 @@ class Usuario{
     function getImagenUsuario() {
         return $this->imagenUsuario;
     }
+    
+    function setNumAccesos($numAccesos): void {
+        $this->numAccesos = $numAccesos;
+    }
+
+
 
 
 

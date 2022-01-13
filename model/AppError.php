@@ -9,43 +9,38 @@
  */
 
 class AppError{
-    private $message;
-    private $code;
-    private $file;
-    private $line;
-    private $errorInfo;
-    private $xdebugMessage;
+    private $codError;
+    private $descError;
+    private $archivoError;
+    private $lineaError;
+    private $paginaSiguiente;
     
-    function __construct($message, $file, $line, $errorInfo, $xdebugMessage) {
-        $this->message = $message;
-        $this->file = $file;
-        $this->line = $line;
-        $this->errorInfo = $errorInfo;
-        $this->xdebugMessage = $xdebugMessage;
-    }
-    
-    function getMessage() {
-        return $this->message;
+    function __construct($codError, $descError, $archivoError, $lineaError, $paginaSiguiente) {
+        $this->codError = $codError;
+        $this->descError = $descError;
+        $this->archivoError = $archivoError;
+        $this->lineaError = $lineaError;
+        $this->paginaSiguiente = $paginaSiguiente;
     }
     
-    function getCode() {
-        return $this->code;
+    function getCodError() {
+        return $this->codError;
+    }
+    
+    function getDescError() {
+        return $this->descError;
     }
 
-    function getFile() {
-        return $this->file;
+    function getArchivoError() {
+        return $this->archivoError;
     }
 
-    function getLine() {
-        return $this->line;
+    function getLineaError() {
+        return $this->lineaError;
     }
-
-    function getErrorInfo() {
-        return $this->errorInfo;
-    }
-
-    function getXdebugMessage() {
-        return $this->xdebugMessage;
+    
+    function getPaginaSiguiente() {
+        return $this->paginaSiguiente;
     }
 
 

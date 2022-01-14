@@ -13,8 +13,8 @@ class UsuarioPDO implements UsuarioDB{
      * 
      * @param String $codigoUsuario Código del usuario a comprobar.
      * @param String $password Contraseña del usuario a comprobar.
-     * @return Object|boolean Devuelve el objeto únicamente con la FechaHoraUltimaConexion
-     * si el usuario existe y la contraseña es correcta, y false en caso contrario.
+     * @return Object|boolean Devuelve el objeto usuario creado si existe y la 
+     * contraseña si es correcta, y false en caso contrario.
      */
     public static function validarUsuario($codigoUsuario, $password) {
         /*
@@ -23,19 +23,19 @@ class UsuarioPDO implements UsuarioDB{
          * introducida sea correcta.
          */
         $sSelect = <<<QUERY
-            SELECT T01_FechaHoraUltimaConexion FROM T01_Usuario
+            SELECT * FROM T01_Usuario
             WHERE T01_CodUsuario='{$codigoUsuario}' AND
             T01_Password=SHA2("{$codigoUsuario}{$password}", 256);
         QUERY;
         
         $oResultado = DBPDO::ejecutarConsulta($sSelect);
         $oUsuario = $oResultado->fetchObject();
+        
         /*
-         * Si existe el objeto, registra la última conexión y lo devuelve.
+         * Si existe el objeto, crea un objeto usuario y lo devuelve.
          */
         if($oUsuario){
-            self::registrarUltimaConexion($codigoUsuario);
-            return $oUsuario;
+            return new Usuario($oUsuario->T01_CodUsuario, $oUsuario->T01_Password, $oUsuario->T01_DescUsuario, $oUsuario->T01_NumConexiones, time(), $oUsuario->T01_FechaHoraUltimaConexion, $oUsuario->T01_Perfil);
         }
         /*
          * Si no existe, devuelve false.
@@ -51,7 +51,8 @@ class UsuarioPDO implements UsuarioDB{
      * @param String $codigoUsuario Código del usuario que se va a registrar.
      * @param String $password Contraseña del usuario que se va a registrar.
      * @param String $descUsuario Descripción (nombre y apellidos) del usuario que se va a registrar.
-     * @return PDOStatement Resultado del insert.
+     * @return Object|false Devuelve un objeto usuario nuevo si todo es correcto,
+     * o false en caso contrario.
      */
     public static function altaUsuario($codigoUsuario, $password, $descUsuario){
         /*
@@ -63,7 +64,12 @@ class UsuarioPDO implements UsuarioDB{
             ("{$codigoUsuario}", SHA2("{$codigoUsuario}{$password}", 256), "{$descUsuario}", UNIX_TIMESTAMP());
         QUERY;
         
-        return DBPDO::ejecutarConsulta($sInsert);
+        if(DBPDO::ejecutarConsulta($sInsert)){
+            return new Usuario($_REQUEST['usuario'], $_REQUEST['password'], $_REQUEST['descripcion'], 1, time(), null, 'usuario');
+        }
+        else{
+            return false;
+        }
     }
     
     /**
@@ -86,13 +92,15 @@ class UsuarioPDO implements UsuarioDB{
      * @param String $codigoUsuario Código del usuario al que registrar una nueva conexión.
      * @return PDOStatement Resultado del update.
      */
-    public static function registrarUltimaConexion($codigoUsuario){
+    public static function registrarUltimaConexion($oUsuario){
         $sUpdate = <<<QUERY
             UPDATE T01_Usuario SET T01_NumConexiones=T01_NumConexiones+1,
             T01_FechaHoraUltimaConexion = unix_timestamp()
-            WHERE T01_CodUsuario='{$codigoUsuario}';
+            WHERE T01_CodUsuario='{$oUsuario->getCodUsuario()}';
         QUERY;
 
+        $oUsuario->setNumAccesos($oUsuario->getNumAccesos()+1);
+            
         return DBPDO::ejecutarConsulta($sUpdate);
     }
     
@@ -106,7 +114,8 @@ class UsuarioPDO implements UsuarioDB{
     /**
      * Dado un código de usuario, comprueba que no exista ya en la base de datos.
      * @param String $codigoUsuario Código del usuario al que registrar una nueva conexión.
-     * @return PDOStatement Resultado del update.
+     * @return Object|boolean Devuelve el objeto usuario si ya existe en la
+     * base de datos, o false si no.
      */
     public static function validarCodNoExiste($codigoUsuario){
         $sSelect = <<<QUERY
@@ -114,7 +123,7 @@ class UsuarioPDO implements UsuarioDB{
             WHERE T01_CodUsuario='{$codigoUsuario}';
         QUERY;
             
-        return DBPDO::ejecutarConsulta($sSelect); 
+        return DBPDO::ejecutarConsulta($sSelect)->fetchObject();
     }
     
     /*

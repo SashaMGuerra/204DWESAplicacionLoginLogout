@@ -23,18 +23,27 @@ require_once 'model/UsuarioDB.php';
 require_once 'model/UsuarioPDO.php';
 require_once 'model/DB.php';
 require_once 'model/DBPDO.php';
+require_once 'model/AppError.php';
 
 // Directorios de los controladores.
 $aControladores = [
+    'inicioPublico' => 'controller/cInicioPublico.php',
     'login' => 'controller/cLogin.php',
-    'inicio' => 'controller/cInicio.php',
-    'registro' => 'controller/cRegistro.php'
+    'inicioPrivado' => 'controller/cInicioPrivado.php',
+    'registro' => 'controller/cRegistro.php',
+    'detalle' => 'controller/cDetalle.php',
+    'wip' => 'controller/cWIP.php',
+    'error' => 'controller/cError.php'
 ];
 
 // Directorios de las vistas.
 $aVistas = [
+    'inicioPublico' => 'view/vInicioPublico.php',
     'layout' => 'view/Layout.php',
     'login' => 'view/vLogin.php',
-    'inicio' => 'view/vInicio.php',
-    'registro' => 'view/vRegistro.php'
+    'inicioPrivado' => 'view/vInicioPrivado.php',
+    'registro' => 'view/vRegistro.php',
+    'detalle' => 'view/vDetalle.php',
+    'wip' => 'view/vWIP.php',
+    'error' => 'view/vError.php'
 ];

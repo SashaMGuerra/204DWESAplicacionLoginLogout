@@ -14,12 +14,11 @@ require_once './config/configApp.php';
 session_start();
 
 /*
- * Si no hay una página a cargar indicada y además no se ha hecho login, carga 
- * el login.
+ * Si no hay una página a cargar indicada, carga el login.
  */
-if(!isset($_SESSION['pagina']) && !isset($_SESSION['usuarioDAW204AppLoginLogout'])){
-    $_SESSION['pagina'] = $aControladores['login'];
+if(!isset($_SESSION['paginaEnCurso'])){
+    $_SESSION['paginaEnCurso'] = 'inicioPublico';
 }
 
 // Cargado de la página indicada.
-require_once $_SESSION['pagina'];
+require_once $aControladores[$_SESSION['paginaEnCurso']];

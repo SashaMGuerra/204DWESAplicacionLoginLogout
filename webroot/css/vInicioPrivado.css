@@ -3,11 +3,11 @@
     Author     : Sasha
 */
 
-#vInicio{
+#vInicioPrivado{
     margin: 0 10px;
 }
 
-#vInicio div.bienvenida{
+#vInicioPrivado div.bienvenida{
     text-align: justify;
     max-width: 800px;
 }

@@ -65,7 +65,7 @@ else{
  * la última conexión y pasar a la página de inicio.
  */
 if ($bEntradaOK) {
-    UsuarioPDO::registrarUltimaConexion($oUsuarioValido);
+    $oUsuarioValido = UsuarioPDO::registrarUltimaConexion($oUsuarioValido);
     $_SESSION['usuarioDAW204AppLoginLogout'] = $oUsuarioValido;
 
     $_SESSION['paginaEnCurso'] = 'inicioPrivado';

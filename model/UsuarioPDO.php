@@ -35,7 +35,7 @@ class UsuarioPDO implements UsuarioDB{
          * Si existe el objeto, crea un objeto usuario y lo devuelve.
          */
         if($oUsuario){
-            return new Usuario($oUsuario->T01_CodUsuario, $oUsuario->T01_Password, $oUsuario->T01_DescUsuario, $oUsuario->T01_NumConexiones, time(), $oUsuario->T01_FechaHoraUltimaConexion, $oUsuario->T01_Perfil);
+            return new Usuario($oUsuario->T01_CodUsuario, $oUsuario->T01_Password, $oUsuario->T01_DescUsuario, $oUsuario->T01_NumConexiones, $oUsuario->T01_FechaHoraUltimaConexion, null, $oUsuario->T01_Perfil);
         }
         /*
          * Si no existe, devuelve false.
@@ -93,12 +93,15 @@ class UsuarioPDO implements UsuarioDB{
      * @return PDOStatement Resultado del update.
      */
     public static function registrarUltimaConexion($oUsuario){
+        $iFechaActual = time();
         $sUpdate = <<<QUERY
             UPDATE T01_Usuario SET T01_NumConexiones=T01_NumConexiones+1,
-            T01_FechaHoraUltimaConexion = unix_timestamp()
+            T01_FechaHoraUltimaConexion = {$iFechaActual}
             WHERE T01_CodUsuario='{$oUsuario->getCodUsuario()}';
         QUERY;
 
+        $oUsuario->setFechaHoraUltimaConexionAnterior($oUsuario->getFechaHoraUltimaConexion);
+        $oUsuario->setFechaHoraUltimaConexion = $iFechaActual;
         $oUsuario->setNumAccesos($oUsuario->getNumAccesos()+1);
             
         return DBPDO::ejecutarConsulta($sUpdate);

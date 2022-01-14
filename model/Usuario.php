@@ -58,9 +58,18 @@ class Usuario{
         return $this->imagenUsuario;
     }
     
-    function setNumAccesos($numAccesos): void {
+    function setNumAccesos($numAccesos) {
         $this->numAccesos = $numAccesos;
     }
+
+    function setFechaHoraUltimaConexion($fechaHoraUltimaConexion) {
+        $this->fechaHoraUltimaConexion = $fechaHoraUltimaConexion;
+    }
+
+    function setFechaHoraUltimaConexionAnterior($fechaHoraUltimaConexionAnterior) {
+        $this->fechaHoraUltimaConexionAnterior = $fechaHoraUltimaConexionAnterior;
+    }
+
 
 
 

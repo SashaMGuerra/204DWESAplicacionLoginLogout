@@ -20,6 +20,13 @@ if(isset($_REQUEST['logout'])){
     exit;
 }
 
+// Si se selecciona ver perfil, va a la página de MiCuenta.
+if(isset($_REQUEST['miCuenta'])){
+    $_SESSION['paginaEnCurso'] = 'miCuenta';
+    header('Location: index.php');
+    exit;
+}
+
 /*
  * Si se selecciona ir a la aplicación MtoDepartamentos, indica la página y
  * recarga el index.

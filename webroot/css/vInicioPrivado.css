@@ -11,3 +11,7 @@
     text-align: justify;
     max-width: 800px;
 }
+
+#vInicioPrivado span{
+    font-weight: bold;
+}

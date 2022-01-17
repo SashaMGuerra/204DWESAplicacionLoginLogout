@@ -1,0 +1,66 @@
+/* 
+    Created on : 17 ene. 2022, 10:46:19
+    Author     : daw2
+*/
+
+#vMiCuenta{
+    text-align: center;
+}
+#vMiCuenta fieldset.main{
+    max-width: 650px;
+    margin: auto;
+    border: none;
+    display: grid;
+    gap: 20px 0;
+}
+
+@media (min-width: 400px){
+    #vMiCuenta fieldset.main{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 600px){
+    #vMiCuenta fieldset.main{
+        grid-template-columns: 1fr;
+    }
+}
+
+#vMiCuenta fieldset.main div.input{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+#vMiCuenta fieldset.main input{
+    padding: 10px;
+    background-color: lavender;
+    border: none;
+    border-bottom: 2px solid midnightblue;
+    margin-bottom: 5px;
+    width: 250px;
+    
+    text-align: center;
+}
+#vMiCuenta fieldset.main input:disabled{
+    color: midnightblue;
+}
+#vMiCuenta fieldset.main input:enabled{
+    background-color: mistyrose;
+    border-bottom: 2px solid firebrick;
+    text-align: left;
+}
+#vMiCuenta div.input:last-of-type button{
+    margin-top: 7px;
+}
+
+#vMiCuenta fieldset.eliminar{
+    border: none;
+    background-color: mistyrose;
+}
+
+#vMiCuenta div.error{
+    color: firebrick;
+    font-size: small;
+}

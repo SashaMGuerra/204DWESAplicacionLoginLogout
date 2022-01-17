@@ -15,6 +15,6 @@
     </div>
     <form method="post">
         <button type="submit" id="login" name="login" value="login">Iniciar sesión</button>
-            <button type="submit" name="registrarse" id="registrarse" value="registrarse">Registrarse</button>
+        <button type="submit" name="registrarse" id="registrarse" value="registrarse">Registrarse</button>
     </form>
 </main>

@@ -12,12 +12,14 @@
 <html lang="ES">
     <head>
         <meta charset="UTF-8">
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
         <title>IMG - App Login-Logout</title>
         <link href="webroot/css/layout.css" rel="stylesheet" type="text/css"/>
         <link href="webroot/css/vInicioPublico.css" rel="stylesheet" type="text/css"/>
         <link href="webroot/css/vLogin.css" rel="stylesheet" type="text/css"/>
         <link href="webroot/css/vInicioPrivado.css" rel="stylesheet" type="text/css"/>
         <link href="webroot/css/vRegistro.css" rel="stylesheet" type="text/css"/>
+        <link href="webroot/css/vMiCuenta.css" rel="stylesheet" type="text/css"/>
         <link href="webroot/css/vDetalle.css" rel="stylesheet" type="text/css"/>
         <link href="webroot/css/vWIP.css" rel="stylesheet" type="text/css"/>
         <link href="webroot/css/vError.css" rel="stylesheet" type="text/css"/>

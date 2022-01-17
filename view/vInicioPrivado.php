@@ -22,6 +22,7 @@
         <fieldset class="submit">
             <button type="submit" id="detalle" name="detalle" value="detalle">Detalle</button>
             <button type="submit" id="fallar" name="fallar" value="fallar">Hacer un select fallido</button>
+            <button type="submit" id="miCuenta" name="miCuenta" value="miCuenta">Ver perfil</button>
             <button type="submit" id="mtoDepartamentos" name="mtoDepartamentos" value="mtoDepartamentos">Ir a MtoDepartamentos</button>
             <button type="submit" id="logout" name="logout" value="logout">Cerrar sesión</button>
         </fieldset>

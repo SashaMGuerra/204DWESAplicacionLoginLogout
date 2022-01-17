@@ -7,9 +7,13 @@
  * Controlador para la página de mostrado de errores.
  */
 
-// Si se selecciona cerrar la página y volver al inicio privado, lo hace.
+/*
+ * Si se selecciona cerrar la página, destruye la variable de sesión de error
+ * y vuelve al inicio privado.
+ */
 if(isset($_REQUEST['cerrar'])){
     $_SESSION['paginaEnCurso'] = $_SESSION['error']->getPaginaSiguiente();
+    unset($_SESSION['error']);
     header('Location: index.php');
     exit;
 }

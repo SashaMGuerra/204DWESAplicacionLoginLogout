@@ -51,16 +51,30 @@
     border-bottom: 2px solid firebrick;
     text-align: left;
 }
+#vMiCuenta div.input:last-of-type{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 #vMiCuenta div.input:last-of-type button{
-    margin-top: 7px;
+    border: none;
+    border-radius: 5px;
+    background-color: mistyrose;
+    color: firebrick;
+    cursor: pointer;
+    padding: 5px 10px;
+    box-shadow:
+        inset 3px 2px 2px lavender,
+        inset -3px -2px 2px firebrick;
+    font-size: medium;
+}
+#vMiCuenta div.input:last-of-type button:hover{
+    box-shadow:
+        inset -3px -2px 2px lavender,
+        inset 3px 2px 2px firebrick;
 }
 
 #vMiCuenta fieldset.eliminar{
     border: none;
     background-color: mistyrose;
-}
-
-#vMiCuenta div.error{
-    color: firebrick;
-    font-size: small;
 }

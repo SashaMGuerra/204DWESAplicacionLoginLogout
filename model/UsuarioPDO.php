@@ -1,10 +1,23 @@
 <?php
 /**
+ * Conexión de usuarios con la base de datos mediante PDO.
+ * 
+ * Funciones de conexión con la base de datos para modificación de usuarios.
+ * 
  * @author Sasha
  * @since 23/12/2021
  * @version 1.0
+ */
+
+/**
+ * Conexión de usuarios con la base de datos mediante PDO.
  * 
- * Clase para conexión de usuarios con la base de datos mediante PDO.
+ * Funciones de conexión con la base de datos para modificación de usuarios.
+ * 
+ * @package LoginLogout
+ * @author Sasha
+ * @since 23/12/2021
+ * @version 1.0
  */
 class UsuarioPDO implements UsuarioDB{
     /**
@@ -12,6 +25,8 @@ class UsuarioPDO implements UsuarioDB{
      * 
      * Comprueba si algún usuario de la base de datos coincide con el código
      * y password dados.
+     * Validación tanto la existencia del usuario como que la contraseña
+    * introducida sea correcta.
      * 
      * @param String $codigoUsuario Código del usuario a comprobar.
      * @param String $password Contraseña del usuario a comprobar.
@@ -19,11 +34,6 @@ class UsuarioPDO implements UsuarioDB{
      * contraseña si es correcta, y false en caso contrario.
      */
     public static function validarUsuario($codigoUsuario, $password) {
-        /*
-         * Query de selección del usuario según su código y contraseña, de modo
-         * que valida tanto la existencia del usuario como que la contraseña
-         * introducida sea correcta.
-         */
         $sSelect = <<<QUERY
             SELECT * FROM T01_Usuario
             WHERE T01_CodUsuario='{$codigoUsuario}' AND
@@ -89,6 +99,33 @@ class UsuarioPDO implements UsuarioDB{
         $usuario->setDescUsuario($descUsuario);
         $usuario->setImagenUsuario($imagenUsuario);
             
+        if(DBPDO::ejecutarConsulta($sUpdate)){
+            return $usuario;
+        }
+        else{
+            return false;
+        }
+    }
+    
+    /**
+     * Cambio de contraseña.
+     * 
+     * Modifica la contraseña del usuario indicado en la base de datos y en el
+     * objeto antes de devolverlo.
+     * 
+     * @param Usuario $usuario Usuario a modificar.
+     * @param String $password Nueva contraseña del usuario.
+     * @return Usuario|false Devuelve el objeto usuario modificado si todo es correcto,
+     * o false en caso contrario.
+     */
+    public static function cambiarPassword($usuario, $password){
+        $sUpdate = <<<QUERY
+            UPDATE T01_Usuario SET T01_Password = SHA2("{$usuario->getCodUsuario()}{$password}", 256)
+            WHERE T01_CodUsuario = "{$usuario->getCodUsuario()}";
+        QUERY;
+        
+        $usuario->setPassword($descUsuario);
+        
         if(DBPDO::ejecutarConsulta($sUpdate)){
             return $usuario;
         }

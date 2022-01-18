@@ -1,10 +1,12 @@
 <?php
 /**
+ * Interfaz para conexión de usuarios con la base de datos.
+ * 
+ * Interfaz para conexión de usuarios con la base de datos.
+ * 
  * @author Sasha
  * @since 23/12/2021
  * @version 1.0
- * 
- * Interfaz para conexión de usuarios con la base de datos.
  */
 interface UsuarioDB{
     /**

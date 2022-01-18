@@ -3,7 +3,15 @@
     Author     : Sasha
 */
 
-#vLogin form{
+#vHeaderLogin{
+    display: flex;
+    flex-flow: column;
+}
+#vHeaderLogin > *{
+    display: block;
+}
+
+#vLogin {
     
 }
 

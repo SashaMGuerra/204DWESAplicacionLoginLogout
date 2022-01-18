@@ -8,8 +8,9 @@
  */
 ?>
 <header>
-    <h1>Aplicación Login-Logout</h1>
-    <h2>Mi cuenta</h2>
+    <h2>Aplicación<br>Login-Logout</h2>
+    <h1>Mi cuenta</h1>
+    <div></div>
 </header>
 <main id="vMiCuenta">
     <form method="post">
@@ -36,7 +37,6 @@
                 <input type='text' name='perfil' id='perfil' value="<?php echo $aVMiCuenta['perfil'] ?>" disabled/>
             </div>
             <div class="input">
-                <div>Contraseña</div>
                 <button type="submit" name="cambiarPassword" value="cambiarPassword">Cambiar contraseña</button>
             </div>
         </fieldset>

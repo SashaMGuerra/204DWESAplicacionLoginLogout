@@ -3,6 +3,14 @@
     Author     : Sasha
 */
 
+#vHeaderRegistro{
+    display: flex;
+    flex-flow: column;
+}
+#vHeaderRegistro > *{
+    display: block;
+}
+
 #vRegistro form{
     
 }

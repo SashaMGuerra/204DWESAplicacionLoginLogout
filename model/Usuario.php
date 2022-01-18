@@ -62,6 +62,10 @@ class Usuario{
         $this->descUsuario = $descUsuario;
     }
     
+    function setPassword($password): void {
+        $this->password = $password;
+    }
+    
     function setNumAccesos($numAccesos) {
         $this->numAccesos = $numAccesos;
     }

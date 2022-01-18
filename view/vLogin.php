@@ -8,7 +8,7 @@
  * Contiene un formulario para introducir usuario y contraseña.
  */
 ?>
-<header>
+<header id="vHeaderLogin">
     <h1>Aplicación Login-Logout</h1>
     <h2>Login</h2>
 </header>

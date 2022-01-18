@@ -30,6 +30,7 @@ body {
 }
 main {
     flex: 1 0 auto;
+    margin: 10px;
 }
 footer {
     flex-shrink: 0;
@@ -38,13 +39,13 @@ footer {
 /* Estilo del header */   
 header{
     text-align: center;
-    margin: 5px 0 10px;
-    /*
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+}
+header > *{
     display: flex;
-    flex-flow: row wrap;
-    align-items: center;
     justify-content: center;
-    */
+    align-items: center;
 }
 
 /* Estilos de footer */
@@ -76,4 +77,8 @@ fieldset.submit{
 label.obligatorio:after{
     content: "*";
     color: firebrick;
+}
+.error{
+    color: firebrick;
+    font-size: small;
 }

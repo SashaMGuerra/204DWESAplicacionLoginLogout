@@ -16,6 +16,13 @@ if(isset($_REQUEST['cancelar'])){
     exit;
 }
 
+// Si se selecciona cambiar contraseña, pasa a la ventana para ello.
+if(isset($_REQUEST['cambiarPassword'])){
+    $_SESSION['paginaEnCurso'] = 'cambiarPassword';
+    header('Location: index.php');
+    exit;
+}
+
 // Si se desea eliminar cuenta, lo hace, destruye la sesión y recarga el index.
 if (isset($_REQUEST['eliminarCuenta'])) {
     UsuarioPDO::borrarUsuario($_SESSION['usuarioDAW204AppLoginLogout']);

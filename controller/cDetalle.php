@@ -8,11 +8,10 @@
  * Muestra phpInfo y variables superglobales.
  */
 
-/*
- * Si se selecciona volver, vuelve al índice.
- */
+// Si se selecciona volver, vuelve a la página anterior..
 if(isset($_REQUEST['volver'])){
-    $_SESSION['paginaEnCurso'] = 'inicioPrivado';
+    $_SESSION['paginaEnCurso'] = $_SESSION['paginaAnterior'];
+    $_SESSION['paginaAnterior'] = '';
     header('Location: index.php');
     exit;
 }

@@ -2,7 +2,7 @@
 /*
  * @author Sasha
  * @since 18/01/2022
- * @version 2.2
+ * @version 3.0
  * 
  * Ventana de cambio de contraseña.
  */

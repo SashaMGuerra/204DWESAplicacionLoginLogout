@@ -25,6 +25,7 @@
         <link href="webroot/css/vWIP.css" rel="stylesheet" type="text/css"/>
         <link href="webroot/css/vError.css" rel="stylesheet" type="text/css"/>
         <script src="webroot/js/vInicioPrivado.js" type="text/javascript"></script>
+        <script src="webroot/js/vMiCuenta.js" type="text/javascript"></script>
     </head>
     <body>
         <?php require_once $aVistas[$_SESSION['paginaEnCurso']]; // Requiere la vista indicada en la variable de página. ?>

@@ -13,7 +13,7 @@
     <div></div>
 </header>
 <main id="vMiCuenta">
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         <fieldset class="main">
             <div class="input">
                 <label for='usuario'>Nombre de usuario</label>
@@ -36,8 +36,26 @@
                 <label for='perfil'>Perfil de usuario</label>
                 <input type='text' name='perfil' id='perfil' value="<?php echo $aVMiCuenta['perfil'] ?>" disabled/>
             </div>
-            <div class="input">
+            <div class="input password">
                 <button type="submit" name="cambiarPassword" value="cambiarPassword">Cambiar contraseña</button>
+            </div>
+            <div class="input imagen">
+                <label for='imagenUsuario'>Imagen de usuario</label>
+                <?php
+                // Si el usuario tiene imagen de usuario, la muestra.
+                if ($aVMiCuenta['imagenUsuario']) {
+                    ?>
+                <div class="img">
+                    <img id="imgUsuario" src="data:image/jpg;base64, <?php echo $aVMiCuenta['imagenUsuario'] ?>" alt="imagen de usuario">
+                    <div>
+                        <input type="checkbox" name="eliminarImagenUsuario" id="eliminarImagenUsuario" onclick="ocultarSubidaImagen(this)">
+                        <label for="eliminarImagenUsuario">¿Eliminar imagen de usuario?</label>
+                    </div>
+                </div>
+                    <?php }
+                ?>
+                <input type='file' name='imagenUsuario' id='imagenUsuario' accept=".jpg,.jpeg,.png"/>
+                <div class="error"><?php echo $aErrores['imagenUsuario'] ?></div>
             </div>
         </fieldset>
         <fieldset class="submit">

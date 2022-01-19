@@ -44,7 +44,7 @@ class UsuarioPDO implements UsuarioDB{
         $usuario = $oResultado->fetchObject();
         
         if($usuario){
-            return new Usuario($usuario->T01_CodUsuario, $usuario->T01_Password, $usuario->T01_DescUsuario, $usuario->T01_NumConexiones, $usuario->T01_FechaHoraUltimaConexion, null, $usuario->T01_Perfil);
+            return new Usuario($usuario->T01_CodUsuario, $usuario->T01_Password, $usuario->T01_DescUsuario, $usuario->T01_NumConexiones, $usuario->T01_FechaHoraUltimaConexion, null, $usuario->T01_Perfil, $usuario->T01_ImagenUsuario);
         }
         else{
             return false;
@@ -85,11 +85,11 @@ class UsuarioPDO implements UsuarioDB{
      * 
      * @param Usuario $usuario Usuario a modificar.
      * @param String $descUsuario Nueva descripción que dar al usuario.
-     * @param String $imagenUsuario Nueva imagen del usuario.
+     * @param String $imagenUsuario Nueva imagen del usuario, codificada en base64.
      * @return Usuario|false Devuelve el objeto usuario modificado si todo es correcto,
      * o false en caso contrario.
      */
-    public static function modificarUsuario($usuario, $descUsuario, $imagenUsuario = ''){
+    public static function modificarUsuario($usuario, $descUsuario, $imagenUsuario){
         $sUpdate = <<<QUERY
             UPDATE T01_Usuario SET T01_DescUsuario = "{$descUsuario}",
             T01_ImagenUsuario = '{$imagenUsuario}'
@@ -163,18 +163,17 @@ class UsuarioPDO implements UsuarioDB{
      * @return Usuario Usuario ya modificado.
      */
     public static function registrarUltimaConexion($usuario){
-        $iFechaActual = time();
+        $usuario->setFechaHoraUltimaConexionAnterior($usuario->getFechaHoraUltimaConexion());
+        $usuario->setFechaHoraUltimaConexion(time());
+        $usuario->setNumAccesos($usuario->getNumAccesos()+1);
+        
         $sUpdate = <<<QUERY
-            UPDATE T01_Usuario SET T01_NumConexiones=T01_NumConexiones+1,
-            T01_FechaHoraUltimaConexion = {$iFechaActual}
+            UPDATE T01_Usuario SET T01_NumConexiones={$usuario->getNumAccesos()},
+            T01_FechaHoraUltimaConexion = {$usuario->getFechaHoraUltimaConexion()}
             WHERE T01_CodUsuario='{$usuario->getCodUsuario()}';
         QUERY;
 
         DBPDO::ejecutarConsulta($sUpdate);
-            
-        $usuario->setFechaHoraUltimaConexionAnterior($usuario->getFechaHoraUltimaConexion());
-        $usuario->setFechaHoraUltimaConexion($iFechaActual);
-        $usuario->setNumAccesos($usuario->getNumAccesos()+1);
             
         return $usuario;
     }

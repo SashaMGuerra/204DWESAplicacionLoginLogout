@@ -35,6 +35,6 @@
         </table>
     </div>
     <form method="post">
-        <button type="submit" name="cerrar" id="cerrar" value="cerrar">Cerrar y volver</button>
+        <button type="submit" name="volver" id="volver" value="volver">Cerrar y volver</button>
     </form>
 </main>

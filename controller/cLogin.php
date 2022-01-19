@@ -10,6 +10,7 @@
 
 // Si se cancela la operación de login, regresa al inicio público.
 if(isset($_REQUEST['cancelar'])){
+    $_SESSION['paginaAnterior'] = $_SESSION['paginaEnCurso'];
     $_SESSION['paginaEnCurso'] = 'inicioPublico';
     header('Location: index.php');
     exit;
@@ -68,6 +69,7 @@ if ($bEntradaOK) {
     $oUsuarioValido = UsuarioPDO::registrarUltimaConexion($oUsuarioValido);
     $_SESSION['usuarioDAW204AppLoginLogout'] = $oUsuarioValido;
 
+    $_SESSION['paginaAnterior'] = $_SESSION['paginaEnCurso'];
     $_SESSION['paginaEnCurso'] = 'inicioPrivado';
     header('Location: index.php');
     exit;

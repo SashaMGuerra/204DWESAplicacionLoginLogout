@@ -3,32 +3,43 @@
     Author     : Sasha
 */
 
-#vHeaderInicioPrivado #menu{
-    display: none;
-}
-#vHeaderInicioPrivado #menu > *{
-    cursor: pointer;
-}
-
 #vHeaderInicioPrivado #showmenu{
     border: 2px solid black;
     border-radius: 5px;
     padding: 5px 10px;
     cursor: pointer;
 }
-#vHeaderInicioPrivado #menu{
-    background-color: black;
-    color: white;
-    
-    position: absolute;
-    top: 52px;
-    
-    flex-direction: column;
-    gap: 7px;
-    padding: 7px;
-}
+
 #vHeaderInicioPrivado #menu button{
     font-size: medium;
+}
+
+/* Imagen de usuario*/
+#vInicioPrivado aside img{
+    max-height: 500px;
+    max-width: 500px;
+}
+
+#vInicioPrivado{
+    margin: auto;
+    display: flex;
+}
+@media (min-width: 720px){
+    #vInicioPrivado{
+        flex-direction: row;
+    }
+}
+@media (max-width: 720px){
+    #vInicioPrivado{
+        flex-direction: column;
+        align-items: center;
+    }
+    #vInicioPrivado aside{
+        order: -1;
+    }
+}
+#vInicioPrivado > *{
+    margin: 10px;
 }
 
 #vInicioPrivado div.bienvenida{
@@ -38,3 +49,5 @@
 #vInicioPrivado span{
     font-weight: bold;
 }
+
+

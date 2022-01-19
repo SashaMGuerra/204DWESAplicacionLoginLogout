@@ -16,7 +16,7 @@
     <form method="post">
         <fieldset>
             <label class="obligatorio" for="usuario">Usuario</label>
-            <input type="text" id="usuario" name="usuario">
+            <input type="text" id="usuario" name="usuario" autofocus>
             <label class="obligatorio" for="password">Contraseña</label>
             <input type="password" id="password" name="password">
         </fieldset>

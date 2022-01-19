@@ -22,6 +22,7 @@ if(isset($_REQUEST['logout'])){
 
 // Si se selecciona ver perfil, va a la página de MiCuenta.
 if(isset($_REQUEST['miCuenta'])){
+    $_SESSION['paginaAnterior'] = $_SESSION['paginaEnCurso'];
     $_SESSION['paginaEnCurso'] = 'miCuenta';
     header('Location: index.php');
     exit;
@@ -32,6 +33,7 @@ if(isset($_REQUEST['miCuenta'])){
  * recarga el index.
  */
 if(isset($_REQUEST['mtoDepartamentos'])){
+    $_SESSION['paginaAnterior'] = $_SESSION['paginaEnCurso'];
     $_SESSION['paginaEnCurso'] = 'wip';
     header('Location: index.php');
     exit;
@@ -39,6 +41,7 @@ if(isset($_REQUEST['mtoDepartamentos'])){
 
 // Si se selecciona ir a la ventana de detalle, va.
 if(isset($_REQUEST['detalle'])){
+    $_SESSION['paginaAnterior'] = $_SESSION['paginaEnCurso'];
     $_SESSION['paginaEnCurso'] = 'detalle';
     header('Location: index.php');
     exit;
@@ -54,7 +57,8 @@ if(isset($_REQUEST['fallar'])){
 $aVInicioPrivado = [
     'descUsuario' => $_SESSION['usuarioDAW204AppLoginLogout']->getDescUsuario(),
     'numAccesos' => $_SESSION['usuarioDAW204AppLoginLogout']->getNumAccesos(),
-    'fechaHoraUltimaConexionAnterior' => $_SESSION['usuarioDAW204AppLoginLogout']->getFechaHoraUltimaConexionAnterior()
+    'fechaHoraUltimaConexionAnterior' => $_SESSION['usuarioDAW204AppLoginLogout']->getFechaHoraUltimaConexionAnterior(),
+    'imagenUsuario' => $_SESSION['usuarioDAW204AppLoginLogout']->getImagenUsuario()
 ];
 
 // Carga de la página de inicio.

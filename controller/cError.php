@@ -11,7 +11,8 @@
  * Si se selecciona cerrar la página, destruye la variable de sesión de error
  * y vuelve al inicio privado.
  */
-if(isset($_REQUEST['cerrar'])){
+if(isset($_REQUEST['volver'])){
+    $_SESSION['paginaAnterior'] = '';
     $_SESSION['paginaEnCurso'] = $_SESSION['error']->getPaginaSiguiente();
     unset($_SESSION['error']);
     header('Location: index.php');

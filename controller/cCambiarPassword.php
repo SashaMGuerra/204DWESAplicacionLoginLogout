@@ -2,13 +2,14 @@
 /**
  * @author Sasha
  * @since 18/01/2022
- * @version 2.2
+ * @version 3.0
  * 
  * Controlador de la ventana de cambio de contraseña.
  */
 
 // Si se selecciona cancelar, vuelve al índice privado sin hacer cambios.
 if(isset($_REQUEST['cancelar'])){
+    $_SESSION['paginaAnterior'] = $_SESSION['paginaEnCurso'];
     $_SESSION['paginaEnCurso'] = 'miCuenta';
     header('Location: index.php');
     exit;
@@ -71,6 +72,7 @@ if($bEntradaOK){
     $_SESSION["usuarioDAW204AppLoginLogout"] = UsuarioPDO::cambiarPassword($_SESSION["usuarioDAW204AppLoginLogout"], $_REQUEST['passwordNueva']);
             
     // Regreso al índice público.
+    $_SESSION['paginaAnterior'] = $_SESSION['paginaEnCurso'];
     $_SESSION['paginaEnCurso'] = 'miCuenta';
     header('Location: index.php');
     exit;

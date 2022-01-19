@@ -5,6 +5,7 @@
 
 #vMiCuenta{
     text-align: center;
+    margin: 0;
 }
 #vMiCuenta fieldset.main{
     max-width: 650px;
@@ -19,13 +20,13 @@
         grid-template-columns: 1fr 1fr;
     }
 }
-
 @media (max-width: 600px){
     #vMiCuenta fieldset.main{
         grid-template-columns: 1fr;
     }
 }
 
+/* Todos los input */
 #vMiCuenta fieldset.main div.input{
     display: flex;
     flex-direction: column;
@@ -40,7 +41,7 @@
     border-bottom: 2px solid midnightblue;
     margin-bottom: 5px;
     width: 250px;
-    
+
     text-align: center;
 }
 #vMiCuenta fieldset.main input:disabled{
@@ -51,12 +52,14 @@
     border-bottom: 2px solid firebrick;
     text-align: left;
 }
-#vMiCuenta div.input:last-of-type{
+
+/* Input password */
+#vMiCuenta div.input.password{
     display: flex;
     justify-content: center;
     align-items: center;
 }
-#vMiCuenta div.input:last-of-type button{
+#vMiCuenta div.input.password button{
     border: none;
     border-radius: 5px;
     background-color: mistyrose;
@@ -68,13 +71,42 @@
         inset -3px -2px 2px firebrick;
     font-size: medium;
 }
-#vMiCuenta div.input:last-of-type button:hover{
+#vMiCuenta div.input.password button:hover{
     box-shadow:
         inset -3px -2px 2px lavender,
         inset 3px 2px 2px firebrick;
 }
 
+/* Input imagen */
+#vMiCuenta div.input.imagen{    
+    grid-column: 1/-1;
+}
+#vMiCuenta div.img > div{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 5px;
+   
+}
+#vMiCuenta div.img > div > *{
+    width: auto;
+}
+
+#vMiCuenta input[type="checkbox"]{
+    margin: 5px;
+}
+#vMiCuenta input[type="checkbox"] + label{
+    font-size: small;
+}
+#vMiCuenta div.input.imagen input[type="file"]{    
+    width: 75%;
+}
+
 #vMiCuenta fieldset.eliminar{
     border: none;
     background-color: mistyrose;
+}
+
+#vMiCuenta div.imagen img{
+    max-width: 300px;
 }

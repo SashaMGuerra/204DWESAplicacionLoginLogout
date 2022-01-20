@@ -9,8 +9,9 @@
  */
 ?>
 <header id='vHeaderWIP'>
-    <h1>Aplicación Login-Logout</h1>
-    <h2>WIP</h2>
+    <h2>Aplicación<br>Login-Logout</h2>
+    <h1>WIP</h1>
+    <div></div>
 </header>
 <main id="vWIP">
     <div>Se ha encontrado con una página aún en desarrollo.</div>

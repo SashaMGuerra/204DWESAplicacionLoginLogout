@@ -1,10 +1,10 @@
 # Aplicación Login-Logout.
-Aplicación ara práctica de POO multicapa, basada en el paradigma Modelo-Vista-Controlador.
+Aplicación para práctica de POO multicapa, basada en el paradigma Modelo-Vista-Controlador.
 Con autenticación de usuarios y control de acceso.
 
 ## Contenido.
 * Control de acceso.
-* Registro de usuarios.
+* Altas, modificaciones y bajas de usuarios.
 
 ## Entornos.
 * Explotación.

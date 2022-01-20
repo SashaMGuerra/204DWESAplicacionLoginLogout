@@ -10,6 +10,7 @@
 
 // Si se cancela, devuelve a la página de inicio público.
 if(isset($_REQUEST['cancelar'])){
+    $_SESSION['paginaAnterior'] = $_SESSION['paginaEnCurso'];
     $_SESSION['paginaEnCurso'] = 'inicioPublico';
     header('Location: index.php');
     exit;
@@ -75,6 +76,7 @@ if($bEntradaOK){
     // Almacenamiento del usuario y la fecha-hora de última conexión.
     $_SESSION['usuarioDAW204AppLoginLogout'] = $oUsuario;
 
+    $_SESSION['paginaAnterior'] = $_SESSION['paginaEnCurso'];
     $_SESSION['paginaEnCurso'] = 'inicioPrivado';
     header('Location: index.php');
     exit;

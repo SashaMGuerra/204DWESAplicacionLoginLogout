@@ -10,7 +10,8 @@
 
 // Si se selecciona volver a la página en que estaba, lo hace.
 if(isset($_REQUEST['volver'])){
-    $_SESSION['paginaEnCurso'] = 'inicioPrivado';
+    $_SESSION['paginaEnCurso'] = $_SESSION['paginaAnterior'];
+    $_SESSION['paginaAnterior'] = '';
     header('Location: index.php');
     exit;
 }

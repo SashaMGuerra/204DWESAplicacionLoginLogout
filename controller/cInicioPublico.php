@@ -10,6 +10,7 @@
 
 // Si decide hacer login, va a la página.
 if(isset($_REQUEST['login'])){
+    $_SESSION['paginaAnterior'] = $_SESSION['paginaEnCurso'];
     $_SESSION['paginaEnCurso'] = 'login';
     header('Location: index.php');
     exit;
@@ -17,6 +18,7 @@ if(isset($_REQUEST['login'])){
 
 // Si se desea acceder a la página de registro, la indica y recarga el index.
 if(isset($_REQUEST['registrarse'])){
+    $_SESSION['paginaAnterior'] = $_SESSION['paginaEnCurso'];
     $_SESSION['paginaEnCurso'] = 'registro';
     header('Location: index.php');
     exit;

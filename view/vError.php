@@ -8,8 +8,9 @@
  */
 ?>
 <header>
-    <h1>Aplicación Login-Logout</h1>
-    <h2>Error</h2>
+    <h2>Aplicación<br>Login-Logout</h2>
+    <h1>Error</h1>
+    <div></div>
 </header>
 <main id="vError">
     <h3>Ha sucedido el siguiente error:</h3>
@@ -34,6 +35,6 @@
         </table>
     </div>
     <form method="post">
-        <button type="submit" name="cerrar" id="cerrar" value="cerrar">Cerrar y volver al índice</button>
+        <button type="submit" name="volver" id="volver" value="volver">Cerrar y volver</button>
     </form>
 </main>

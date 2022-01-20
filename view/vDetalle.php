@@ -8,8 +8,9 @@
  */
 ?>
 <header>
-    <h1>Aplicación Login-Logout</h1>
-    <h2>Detalle</h2>
+    <h2>Aplicación<br>Login-Logout</h2>
+    <h1>Detalle</h1>
+    <div></div>
 </header>
 <main id="vDetalle">
     <form method="post">

@@ -16,7 +16,7 @@ class Usuario{
     private $perfil;
     private $imagenUsuario;
     
-    function __construct($codUsuario, $password, $descUsuario, $numAccesos, $fechaHoraUltimaConexion, $fechaHoraUltimaConexionAnterior, $perfil) {
+    function __construct($codUsuario, $password, $descUsuario, $numAccesos, $fechaHoraUltimaConexion, $fechaHoraUltimaConexionAnterior, $perfil, $imagenUsuario) {
         $this->codUsuario = $codUsuario;
         $this->password = $password;
         $this->descUsuario = $descUsuario;
@@ -24,6 +24,7 @@ class Usuario{
         $this->fechaHoraUltimaConexion = $fechaHoraUltimaConexion;
         $this->fechaHoraUltimaConexionAnterior = $fechaHoraUltimaConexionAnterior;
         $this->perfil = $perfil;
+        $this->imagenUsuario = $imagenUsuario;
     }
     
     function getCodUsuario() {
@@ -58,9 +59,32 @@ class Usuario{
         return $this->imagenUsuario;
     }
     
-    function setNumAccesos($numAccesos): void {
+    function setDescUsuario($descUsuario): void {
+        $this->descUsuario = $descUsuario;
+    }
+    
+    function setPassword($password): void {
+        $this->password = $password;
+    }
+    
+    function setNumAccesos($numAccesos) {
         $this->numAccesos = $numAccesos;
     }
+
+    function setFechaHoraUltimaConexion($fechaHoraUltimaConexion) {
+        $this->fechaHoraUltimaConexion = $fechaHoraUltimaConexion;
+    }
+
+    function setFechaHoraUltimaConexionAnterior($fechaHoraUltimaConexionAnterior) {
+        $this->fechaHoraUltimaConexionAnterior = $fechaHoraUltimaConexionAnterior;
+    }
+    
+    function setImagenUsuario($imagenUsuario): void {
+        $this->imagenUsuario = $imagenUsuario;
+    }
+
+
+
 
 
 

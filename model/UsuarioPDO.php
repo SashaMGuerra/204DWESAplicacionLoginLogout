@@ -70,7 +70,7 @@ class UsuarioPDO implements UsuarioDB{
         QUERY;
         
         if(DBPDO::ejecutarConsulta($sInsert)){
-            return new Usuario($_REQUEST['usuario'], $_REQUEST['password'], $_REQUEST['descripcion'], 1, time(), null, 'usuario');
+            return new Usuario($_REQUEST['usuario'], $_REQUEST['password'], $_REQUEST['descripcion'], 1, time(), null, 'usuario', null);
         }
         else{
             return false;
